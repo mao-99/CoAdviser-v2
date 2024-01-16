@@ -10,7 +10,7 @@ export const courses: Course[] = [
         coreqs: [],
     },
     {
-        id: 1,
+        id: 2,
         name: "CHN 111",
         credits: 3,
         taken: true,
@@ -18,7 +18,7 @@ export const courses: Course[] = [
         coreqs: [],
     },
     {
-        id: 1,
+        id: 3,
         name: "CHM 111",
         credits: 3,
         taken: true,
