@@ -8,3 +8,5 @@ export interface Course {
 }
 
 export type CourseID = number;
+
+export type Courses = Course[];
