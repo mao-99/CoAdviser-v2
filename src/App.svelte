@@ -1,7 +1,8 @@
 <script lang="ts">
   import "./app.css";
   import { courses, getCourse } from "./lib/courses";
-  import type { Course } from './lib/types'
+  import type { Course } from './lib/types';
+  import SelectCourses from "./selectCourses.svelte";
 
   let can_take: string[]  = [];
 
@@ -75,7 +76,7 @@
   }
 </script>
 
-<main class="m-2">
+<main class=" bg-primary">
   {#each $courses as course (course.id)}
     <div>
       <label>
@@ -99,4 +100,6 @@
       {/each}
     </div>
   {/if}
+
+    <SelectCourses></SelectCourses>
 </main>
