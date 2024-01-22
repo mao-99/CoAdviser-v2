@@ -4,7 +4,11 @@ const colors = require('tailwindcss/colors')
 export default {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        page: "calc(100vh - 2rem)"
+      }
+    },
     colors: {
       'primary': "#DCF2F1",
       'secondary': "#7FC7D9",

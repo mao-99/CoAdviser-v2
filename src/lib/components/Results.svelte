@@ -3,11 +3,12 @@
   import type { CourseResult } from '../types'
 
   export let can_take: CourseResult[] = [];
+  export let state: number;
 </script>
 
 
 <div>
-  <button class="bg-quaternary text-white p-2 rounded-md hover:bg-tertiary">
+  <button on:click={() => state = 0} class="bg-quaternary text-white p-2 rounded-md hover:bg-tertiary">
     Go Back
   </button>
   <div class="flex items-center gap-x-2 gap-y-4 flex-wrap">

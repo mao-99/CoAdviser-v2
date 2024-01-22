@@ -2,9 +2,11 @@
   import "./app.css";
   import { courses, getCourse } from "./lib/courses";
   import type { Course } from './lib/types'
-  import { Results } from './lib/components'
+  import { Results, CourseSelector, Loading } from './lib/components'
 
   let can_take: string[]  = [];
+
+  let state = 0;
 
   function handleClick(course: Course) {
     function checkPrereqs(course: Course) { // depth first search
@@ -76,7 +78,7 @@
   }
 </script>
 
-<main class="p-2 bg-primary h-lvh">
+<main class="p-4 bg-primary min-h-lvh">
   <!--
   {#each $courses as course (course.id)}
     <div>
@@ -102,78 +104,85 @@
     </div>
   {/if}
   -->
-  <Results can_take={[
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENG 111",
-      credits1: 3,
-    },
-    {
-      recommended: true,
-      isCoreq: false,
-      name1: "ENS 100",
-      credits1: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENS 136",
-      credits1: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: true,
-      name1: "MTH 229",
-      credits1: 1,
-      name2: "MTH 231",
-      credits2: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENG 111",
-      credits1: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENS 100",
-      credits1: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENS 136",
-      credits1: 3,
-    },
-    {
-      recommended: true,
-      isCoreq: true,
-      name1: "MTH 229",
-      credits1: 1,
-      name2: "MTH 231",
-      credits2: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENG 111",
-      credits1: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: false,
-      name1: "ENS 100",
-      credits1: 3,
-    },
-    {
-      recommended: false,
-      isCoreq: true,
-      name1: "MTH 229",
-      credits1: 1,
-      name2: "MTH 231",
-      credits2: 3,
-    },
-  ]}/>
+  <!--
+   -->
+   <!-- {#if state == 0}
+    <CourseSelector bind:state />
+  {:else if state == 1}
+    <Results bind:state can_take={[
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENG 111",
+        credits1: 3,
+      },
+      {
+        recommended: true,
+        isCoreq: false,
+        name1: "ENS 100",
+        credits1: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENS 136",
+        credits1: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: true,
+        name1: "MTH 229",
+        credits1: 1,
+        name2: "MTH 231",
+        credits2: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENG 111",
+        credits1: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENS 100",
+        credits1: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENS 136",
+        credits1: 3,
+      },
+      {
+        recommended: true,
+        isCoreq: true,
+        name1: "MTH 229",
+        credits1: 1,
+        name2: "MTH 231",
+        credits2: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENG 111",
+        credits1: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: false,
+        name1: "ENS 100",
+        credits1: 3,
+      },
+      {
+        recommended: false,
+        isCoreq: true,
+        name1: "MTH 229",
+        credits1: 1,
+        name2: "MTH 231",
+        credits2: 3,
+      },
+    ]}/>
+  {/if} -->
+  <Loading />
 </main>
