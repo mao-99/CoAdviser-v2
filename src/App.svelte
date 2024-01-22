@@ -106,9 +106,9 @@
   -->
   <!--
    -->
-   <!-- {#if state == 0}
+  {#if state == 0}
     <CourseSelector bind:state />
-  {:else if state == 1}
+  {:else if state == 2}
     <Results bind:state can_take={[
       {
         recommended: false,
@@ -183,6 +183,7 @@
         credits2: 3,
       },
     ]}/>
-  {/if} -->
-  <Loading />
+  {:else if state == 1}
+    <Loading bind:state />
+  {/if}
 </main>

@@ -6,29 +6,54 @@
   export let state: number;
   
   function handleClick(course: Course) {
-    course.taken = !course.taken;
+    function checkPrereqs(course: Course) {
+      $selected_courses.add(course);
+      course.taken = true;
 
-    if (!$selected_courses.includes(course)){
-        $selected_courses.push(course);
+      if(course.prereqs.length === 0) return;
+
+      for(let i = 0; i < course.prereqs.length; i++) {
+        const prereq_course = getCourse(course.prereqs[i]);
+
+        if(prereq_course && !prereq_course.taken) {
+          handleClick(prereq_course);
+        }
+      }
     }
 
-    $courses = $courses;
+    function uncheckSubseqs(course: Course) {
+      for(let i = 0; i < $courses.length; i++) {
+        if($courses[i].prereqs.includes(course.id)) {
+          $courses[i].taken = false;
+          $selected_courses.delete($courses[i]);
+
+          uncheckSubseqs($courses[i]);
+        }
+      }
+    }
+
+    if(course.taken) {
+      course.taken = false;
+      $selected_courses.delete(course);
+      uncheckSubseqs(course)
+    } else checkPrereqs(course);
+
+    $courses = [...$courses]
   }
 
   function clearSelections(){
     for (let i = 0; i < $courses.length ; i++){
       $courses[i].taken = false;
     }
-    $selected_courses = [];
+    $selected_courses = new Set();
     $courses = $courses;
   }
 
   function handleSubmit(){
-    $selected_courses = [...$selected_courses.filter((course: Course) => course.taken)];
-    $selected_courses = $selected_courses;
-
     state = 1;
   }
+
+  
 </script>
 
 <h2 class="font-bold ps-20 text-xl mb-4">Select Classes Taken</h2>
