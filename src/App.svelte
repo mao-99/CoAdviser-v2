@@ -13,4 +13,6 @@
   {:else if state == 2}
     <Results bind:state />
   {/if}
+
+    <SelectCourses></SelectCourses>
 </main>
