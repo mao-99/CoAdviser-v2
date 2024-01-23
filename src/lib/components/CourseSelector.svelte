@@ -1,16 +1,14 @@
 <script lang="ts">
   import { courses, getCourse } from "../courses";
   import type { Course } from "../types";
-  import { selected_courses } from "../store";
 
   export let state: number;
   
   function handleClick(course: Course) {
     function checkPrereqs(course: Course) {
-      $selected_courses.add(course);
       course.taken = true;
 
-      if(course.prereqs.length === 0) return;
+      /*if(course.prereqs.length === 0) return;
 
       for(let i = 0; i < course.prereqs.length; i++) {
         const prereq_course = getCourse(course.prereqs[i]);
@@ -18,14 +16,13 @@
         if(prereq_course && !prereq_course.taken) {
           handleClick(prereq_course);
         }
-      }
+      }*/
     }
 
     function uncheckSubseqs(course: Course) {
       for(let i = 0; i < $courses.length; i++) {
         if($courses[i].prereqs.includes(course.id)) {
           $courses[i].taken = false;
-          $selected_courses.delete($courses[i]);
 
           uncheckSubseqs($courses[i]);
         }
@@ -34,8 +31,7 @@
 
     if(course.taken) {
       course.taken = false;
-      $selected_courses.delete(course);
-      uncheckSubseqs(course)
+      // uncheckSubseqs(course)
     } else checkPrereqs(course);
 
     $courses = [...$courses]
@@ -45,7 +41,6 @@
     for (let i = 0; i < $courses.length ; i++){
       $courses[i].taken = false;
     }
-    $selected_courses = new Set();
     $courses = $courses;
   }
 

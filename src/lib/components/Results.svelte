@@ -1,6 +1,7 @@
 <script lang="ts">
   import { CourseTag } from './';
   import { can_take } from '../store'
+  import { courses } from '../courses'
 
   export let state: number;
 </script>
@@ -8,11 +9,18 @@
 
 <div>
   <button on:click={() => {
+    $can_take = [];
+
+    for(let i = 0; i < $courses.length; i++) {
+      $courses[i].taken = false;
+    }
+
     state = 0;
   }} 
-  class="bg-quaternary text-white p-2 rounded-md hover:bg-tertiary">
+  class="bg-quaternary text-white p-2 mb-8 rounded-md hover:bg-tertiary">
     Go Back
   </button>
+  <p class="mb-8 font-bold text-xl">Classes you can take</p>
   <div class="flex items-center gap-x-2 gap-y-4 flex-wrap">
     {#each $can_take as { recommended, isCoreq, name1, credits1, name2, credits2 }}
       <div class={`relative ${recommended ? 'border-4 border-yellow-400 px-1 pb-1 pt-4 rounded-xl' : ''}`}>
