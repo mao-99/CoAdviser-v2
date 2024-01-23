@@ -1,4 +1,4 @@
-# CoAdviser: An Open-Source Desktop Application to assist advisers
+# CoAdviser: An open-source desktop application for advisers
 
 ## Images
 <img src="./src/assets/screenshot1.png"/>
